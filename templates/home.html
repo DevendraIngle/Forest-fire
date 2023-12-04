@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FWI Prediction</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: #333;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>FWI Prediction</h1>
+    <form action="{{ url_for('predict_datapoint')}}" method="post">
+      <input type="text" name="Temperature" placeholder="Temperature" required="required">
+      <input type="text" name="RH" placeholder="Relative Humidity" required="required">
+      <input type="text" name="Ws" placeholder="Wind Speed" required="required">
+      <input type="text" name="Rain" placeholder="Rainfall" required="required">
+      <input type="text" name="FFMC" placeholder="Fine Fuel Moisture Code" required="required">
+      <input type="text" name="DMC" placeholder="Duff Moisture Code" required="required">
+      <input type="text" name="ISI" placeholder="Initial Spread Index" required="required">
+      <input type="text" name="Classes" placeholder="Fire Classes" required="required">
+      <input type="text" name="Region" placeholder="Region" required="required">
+      <button type="submit">Predict</button>
+    </form>
+    <h2>The FWI prediction is {{result}}</h2>
+  </div>
+  <script>
+    document.querySelector('.container').style.transform = 'scale(1)';
+  </script>
+</body>
+</html>
